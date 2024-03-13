@@ -1,0 +1,74 @@
+a{
+				text-decoration: none;
+				color: #000;
+				font-family: 'Georgia', serif;
+
+}
+.pd{
+				margin-top: 100px;
+				color: #fff;
+}
+.pd2{
+				margin-top: 100px;
+				color: #7a00ff;
+				
+}
+.pd2 img {
+				width: 300px;
+				height: 300px;
+				border-radius: 10px;
+				border: 1px solid #FFF;
+}
+.pd2 div {
+				width: 100%;
+				height: auto;
+				border-radius: 10px;
+				background: black;
+				border: 1px solid #FFF;
+}
+.sosh img{
+				width: 300px;
+				height: 150px;
+}
+.sosh p{
+				color: #fff;
+				margin-top: 10px;
+}
+h2{
+				color:#fff;
+}
+body {
+												background-image: url('goj.jpg');
+												background-size: cover;
+								}
+.toolbar{		
+										width: 100%;
+										height: 50px;
+										text-align: center;
+								}
+nav {
+  background: #01BDFC;
+  border: 2px solid #09131F;
+  top: 0;
+  width: 100%;
+  transition: all 0.5s;
+  position: relative;
+  z-index: 1;
+}
+
+nav ul {
+  margin: 0;
+  padding:0;
+  list-style: none;
+  display: flex;
+}
+
+nav li {
+  flex: 1;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

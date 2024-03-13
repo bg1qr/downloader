@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Youtube Downloader</title>
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('goj.jpg');
+  background-size: cover;
+}
+
+h1 {
+  text-align: center;
+  color: #7a00ff;
+}
+
+#urll, #download-info {
+  width: 300px;
+  margin: 0 auto 10px auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#download-info img {
+				width: 150px;
+				height: 150px;
+				border-radius: 4px;
+				border: 2px solid #fff;
+}
+video {
+				width: 300px;
+				height: 300px;
+				border-radius: 4px;
+				border: 2px solid #fff;
+}
+
+#download-info{
+				color: #ff000a;
+				margin-top: 100px;
+				border: 2px solid #ff000a;
+				font-weight: bold;
+				text-align: center;
+}
+h3{
+				border: 2px solid #fff;
+				background: #000;
+}
+input{
+				width: 100%;
+				height: 30px;
+				outline: none;
+				border: none;
+				background: #eaeaff;
+				margin: 4px 0;
+				border-radius: 4px;
+				color: #000;
+				box-shadow: 0 0 8px black;
+}
+input:focus{
+				background: #eaeaff;
+				transform: scale(1.1);
+}
+button {
+				width: 75%;
+				height: 40px;
+				margin-top: 20px;
+				border: none;
+				background: #b900ff;
+				color: #fff;
+				border-radius: 20px;
+				transition: 0.8s;
+				box-shadow: 0 0 8px black;
+}
+button:hover{
+				background:#7a00ff;
+				letter-spacing: 1px;
+}
+#mnu{
+				margin-top: 100px;
+}
+#mnu img {
+				height: 150px;
+				width: 200px;
+				margin: 5px 0;
+}
+  </style> 
+  <link rel="stylesheet" href="style.css">
+  <div class="toolbar">
+				<h2>Social Media Download</h2>
+				  <nav id="main">
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      
+      <li><a href="SoundCloud.html">SoundCloud</a></li>
+      <li><a href="YouTube.html">YouTube</a></li>
+    </ul>
+  </nav>
+</div>
+  </head>
+<body>
+				<center>
+  <div id="mnu">  				
+  			
+  				<img src="youtube_PNG13.png" alt="png" >
+  <input type="text" id="urll" placeholder="Enter Youtube URL">
+  <button onclick="downloadSound()">Download Youtube</button>
+  </div>
+  <div id="download-info">
+</div> 
+<script>
+const urllInput = document.getElementById('urll');
+const downloadInfo = document.getElementById('download-info');
+const mnu = document.getElementById('mnu');
+downloadInfo.style.display ="none";
+function downloadSound() {
+  const soundcloudUrl = urllInput.value;
+  console.log("••••")
+  downloadInfo.textContent = '';
+  downloadInfo.style.display ="block";
+  mnu.style.display ="none";
+  
+
+  fetch('https://savevideofrom.me/wp-json/aio-dl/video-data/', {
+    method: 'POST',
+    headers: {
+      'accept': '*/*',
+      'accept-language': 'en-US,en;q=0.9',
+      'origin': 'https://savevideofrom.me', 
+      'referer': 'https://savevideofrom.me/', 
+      'user-agent': 'Mozilla/5.0 (Chrome/v120)' 
+    },
+    body: new URLSearchParams({
+      'url': `${soundcloudUrl}`,
+      'token': '0fc22eccfadff3ef3d109877c1cb28a125b11fcfdae964d765b374d5976d4a0b' // Potentially sensitive information - consider alternatives
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data && data.thumbnail && data.title) {
+
+
+						const newd = `
+						<center>
+			<img src="${data.thumbnail}">	
+			<h3>${data.title}</h3>
+  <video controls>
+  <source src="${data.medias['0'].url}" type="video/mp4">
+</video>
+			</center>
+						`;
+					
+						document.getElementById('download-info').innerHTML=newd;
+						//img.src = data.thumbnail;
+      //downloadInfo.textContent = ` ${data.title}`;						
+    } else {
+      downloadInfo.textContent = 'Download information unavailable.';
+      console.log("••••")
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching download information:', error);
+    downloadInfo.textContent = 'An error occurred. Please try again later.';
+  });
+}
+
+function isValidyoutubeUrl(url) {
+  return url.startsWith('https://youtube.com/');
+}
+				
+</script>
+</center>
+<center>
+<div class="pd">
+				<p >©Copyright 2024 | @b_4qr </p>
+				<p >My channel | @python_pa </p>
+</div>
+</center> 
+</body>
+</html>
